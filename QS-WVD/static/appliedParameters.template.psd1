@@ -45,6 +45,7 @@
     vnetResourceGroupName                 = "[virtualNetworkResourceGroupName]" # Name of the resource group with the domain controller VM and VNET in it
     subnetName                            = "[existingSubnetName]"              # Name of the subnet for the VMs to join
     enablePersistentDesktop               = $false                              # WVD setting
+    hostpoolMetadataRegion                = "[hostpoolMetadataRegion]"          # Added by Matt
     ######################
 
     # App group related #

@@ -16,6 +16,13 @@
                 "description": "Optional. Location for all resources."
             }
         },
+        "hostpoolMetadataRegion": {
+            "type": "string",
+            "defaultValue": "westus",
+            "metadata": {
+                "description": "Optional. Location for the WVD metadata (must be US-based)."
+            }
+        },
         "hostpoolFriendlyName": {
             "defaultValue": "",
             "type": "string",
@@ -235,7 +242,7 @@
             "type": "Microsoft.DesktopVirtualization/hostpools",
             "apiVersion": "2019-12-10-preview",
             "name": "[parameters('hostpoolName')]",
-            "location": "[parameters('location')]",
+            "location": "[parameters('hostpoolMetadataRegion')]",
             "tags": "[parameters('tags')]",
             "properties": {
                 "friendlyName": "[parameters('hostpoolFriendlyName')]",
@@ -272,7 +279,7 @@
                     "type": "Microsoft.DesktopVirtualization/hostpools/providers/diagnosticsettings",
                     "apiVersion": "2017-05-01-preview",
                     "name": "[concat(parameters('hostPoolName'), '/Microsoft.Insights/service')]",
-                    "location": "[parameters('location')]",
+                    "location": "[parameters('hostpoolMetadataRegion')]",
                     "condition": "[or(not(empty(parameters('diagnosticStorageAccountId'))),not(empty(parameters('workspaceId'))),not(empty(parameters('eventHubAuthorizationRuleId'))),not(empty(parameters('eventHubName'))))]",
                     "dependsOn": [
                         "[concat('Microsoft.DesktopVirtualization/hostpools/', parameters('hostPoolName'))]"

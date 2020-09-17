@@ -71,7 +71,7 @@
                 "settings": {
                     "wmfVersion": "latest",
                     "configuration": {
-                        "url": "https://github.com/Azure/wvdquickstart/raw/main/Uploads/Configuration.zip",
+                        "url": "https://github.com/ISMDemocom/wvdquickstart/raw/main/Uploads/Configuration.zip",
                         "script": "Configuration.ps1",
                         "function": "AddSessionHost"
                     },
