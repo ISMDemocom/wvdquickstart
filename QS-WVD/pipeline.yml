@@ -285,8 +285,13 @@ stages:
               - checkout: self
               - powershell: |
                   if(-not (Get-Module Az.DesktopVirtualization -ListAvailable)) {
-                      Write-Verbose "Installing module 'Az.DesktopVirtualization'" -Verbose
-                      Install-Module Az.DesktopVirtualization -Repository PSGallery -Force -Scope CurrentUser
+      ## Edits by Matt - bug in earlier AZ module versions causes error: 'Template parameter JToken type is not valid. Expected 'String, Uri'. Actual 'Object'
+      ##                 see: https://github.com/Azure/azure-powershell/issues/12792
+      ##                 Modification below is a workaround to clobber the entire AZ module with a newer working version
+                      #Write-Verbose "Installing module 'Az.DesktopVirtualization'" -Verbose
+                      #Install-Module Az.DesktopVirtualization -Repository PSGallery -Force -Scope CurrentUser
+                      Write-Verbose "Installing module 'Az' (specific v4.7.0)" -Verbose
+                      Install-Module -Name Az -Repository PSGallery -RequiredVersion 4.7.0 -AllowClobber -AcceptLicense -Force -Scope CurrentUser
                   } else {
                       Write-Verbose "Module 'Az.DesktopVirtualization' already installed" -Verbose
                   }
