@@ -283,11 +283,11 @@ stages:
           deploy:
             steps:
               - checkout: self
+              # Edits by Matt - bug in earlier AZ module versions causes error: 'Template parameter JToken type is not valid. Expected 'String, Uri'. Actual 'Object'
+              #                 see: https://github.com/Azure/azure-powershell/issues/12792
+              #                 Modification below is a workaround to clobber the entire AZ module with a newer working version
               - powershell: |
                   if(-not (Get-Module Az.DesktopVirtualization -ListAvailable)) {
-      ## Edits by Matt - bug in earlier AZ module versions causes error: 'Template parameter JToken type is not valid. Expected 'String, Uri'. Actual 'Object'
-      ##                 see: https://github.com/Azure/azure-powershell/issues/12792
-      ##                 Modification below is a workaround to clobber the entire AZ module with a newer working version
                       #Write-Verbose "Installing module 'Az.DesktopVirtualization'" -Verbose
                       #Install-Module Az.DesktopVirtualization -Repository PSGallery -Force -Scope CurrentUser
                       Write-Verbose "Installing module 'Az' (specific v4.7.0)" -Verbose
