@@ -298,9 +298,6 @@ stages:
                 displayName: 'Deploy module [VirtualMachines] in [$(resourceGroupName)] via [$(serviceConnection)]'
                 name: Deploy_SessionHosts_Task
                 inputs:
-                  # Notes from Matt - Installing specific Az 4.4 version, due to current DevOps bug - https://github.com/actions/virtual-environments/issues/1671
-                  azurePowerShellVersion: OtherVersion
-                  preferredAzurePowerShellVersion: '4.4.0'
                   azureSubscription: $(serviceConnection)
                   ScriptType: InlineScript
                   inline: |
@@ -368,7 +365,9 @@ stages:
 
                     Invoke-GeneralDeployment @functionInput -Verbose
                   errorActionPreference: stop
-                  azurePowerShellVersion: LatestVersion
+                  # Notes from Matt - Installing specific Az 4.4 version, due to current DevOps bug - https://github.com/actions/virtual-environments/issues/1671
+                  azurePowerShellVersion: OtherVersion
+                  preferredAzurePowerShellVersion: '4.4.0'
                 enabled: true 
 
   - deployment: Deploy_Workspace
