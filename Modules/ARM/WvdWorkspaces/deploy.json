@@ -23,9 +23,8 @@
             }
         },
         "appGroupResourceIds": {
-            "defaultValue": [
-            ],
             "type": "array",
+            "defaultValue": [],
             "metadata": {
                 "description": "Required. Resource IDs fo the existing Application groups this workspace will group together."
             }
