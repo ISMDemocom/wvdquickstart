@@ -366,6 +366,7 @@ stages:
                     Invoke-GeneralDeployment @functionInput -Verbose
                   errorActionPreference: stop
                   # Notes from Matt - Installing specific Az 4.4 version, due to current DevOps bug - https://github.com/actions/virtual-environments/issues/1671
+                  #azurePowerShellVersion: LatestVersion
                   azurePowerShellVersion: OtherVersion
                   preferredAzurePowerShellVersion: '4.4.0'
                 enabled: true 

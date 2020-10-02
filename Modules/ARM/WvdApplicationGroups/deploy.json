@@ -16,6 +16,13 @@
                 "description": "Optional. Location for all resources."
             }
         },
+        "hostpoolMetadataRegion": {
+            "type": "string",
+            "defaultValue": "westus",
+            "metadata": {
+                "description": "Optional. Location for the WVD metadata (must be US-based)."
+            }
+        },
         "appGroupType": {
             "allowedValues": [
                 "RemoteApp",
@@ -339,7 +346,7 @@
             "type": "Microsoft.DesktopVirtualization/applicationgroups",
             "apiVersion": "2019-12-10-preview",
             "name": "[parameters('appGroupName')]",
-            "location": "[parameters('location')]",
+            "location": "[parameters('hostpoolMetadataRegion')]",
             "tags": "[parameters('tags')]",
             "properties": {
                 "hostpoolarmpath": "[resourceId('Microsoft.DesktopVirtualization/hostpools/', parameters('hostpoolName'))]",
@@ -365,7 +372,7 @@
                     "type": "Microsoft.DesktopVirtualization/applicationgroups/providers/diagnosticsettings",
                     "apiVersion": "2017-05-01-preview",
                     "name": "[concat(parameters('appGroupName'), '/Microsoft.Insights/service')]",
-                    "location": "[parameters('location')]",
+                    "location": "[parameters('hostpoolMetadataRegion')]",
                     "condition": "[or(not(empty(parameters('diagnosticStorageAccountId'))),not(empty(parameters('workspaceId'))),not(empty(parameters('eventHubAuthorizationRuleId'))),not(empty(parameters('eventHubName'))))]",
                     "dependsOn": [
                         "[concat('Microsoft.DesktopVirtualization/applicationgroups/', parameters('appGroupName'))]"
