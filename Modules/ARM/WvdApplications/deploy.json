@@ -16,6 +16,13 @@
                 "description": "Optional. Location for all resources."
             }
         },
+        "hostpoolMetadataRegion": {
+            "type": "string",
+            "defaultValue": "westus",
+            "metadata": {
+                "description": "Optional. Location for the WVD metadata (must be US-based)."
+            }
+        },
         "appGroupName": {
             "type": "string",
             "minLength": 1,
@@ -57,7 +64,7 @@
                 "count": "[length(parameters('applications'))]"
             },
             "name": "[concat(parameters('appGroupName'), '/', parameters('applications')[copyIndex()].name)]",
-            "location": "[parameters('location')]",
+            "location": "[parameters('hostpoolMetadataRegion')]",
             "properties": {
                 "description": "[parameters('applications')[copyIndex()].description]",
                 "friendlyName": "[parameters('applications')[copyIndex()].friendlyName]",
