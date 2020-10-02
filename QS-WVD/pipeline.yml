@@ -287,7 +287,7 @@ stages:
                   if(-not (Get-Module Az.DesktopVirtualization -ListAvailable)) {
                       # Notes from Matt - Installing specific Az 4.4 version, due to current DevOps bug - https://github.com/actions/virtual-environments/issues/1671
                       Write-Verbose "Installing module 'Az.DesktopVirtualization'" -Verbose
-                      Install-Module Az.DesktopVirtualization -Repository PSGallery -Force -Scope CurrentUser -RequiredVersion 4.4.0
+                      Install-Module Az.DesktopVirtualization -Repository PSGallery -Force -Scope CurrentUser
                       #Write-Verbose "Installing module 'Az' (specific v4.7.0)" -Verbose
                       #Install-Module -Name Az -Repository PSGallery -RequiredVersion 4.7.0 -AllowClobber -AcceptLicense -Force -Scope CurrentUser
                   } else {
