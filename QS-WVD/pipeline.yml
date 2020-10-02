@@ -408,7 +408,9 @@ stages:
 
                     Invoke-GeneralDeployment @functionInput -Verbose
                   errorActionPreference: stop
-                  azurePowerShellVersion: LatestVersion
+                  #azurePowerShellVersion: LatestVersion
+                  azurePowerShellVersion: OtherVersion
+                  preferredAzurePowerShellVersion: '4.4.0'
                 enabled: true
 
   - deployment: Deploy_RemoteAppGroup
